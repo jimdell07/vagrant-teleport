@@ -1,0 +1,25 @@
+teleport:
+  auth_token: my-little-token
+  auth_servers: [ "authserver:3025" ]
+  log:
+      output: /var/lib/teleport/teleport.log
+      severity: DEBUG
+
+# SSH is also enabled on this node:
+ssh_service:
+  enabled: "yes"
+
+auth_service:
+  # enable the auth service:
+  enabled: "no"
+
+proxy_service:
+    # Turns 'proxy' role on. Default is 'yes'
+    enabled: "yes"
+    listen_addr: 0.0.0.0:3023
+    tunnel_listen_addr: 0.0.0.0:3024
+    web_listen_addr: 0.0.0.0:3080
+    public_addr: my-site.example:3080
+    ssh_public_addr: my-site.example:3023
+    https_key_file: /var/lib/teleport/my-site.example.key
+    https_cert_file: /var/lib/teleport/my-site.example.crt
