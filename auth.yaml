@@ -1,0 +1,24 @@
+teleport:
+  auth_token: my-little-token
+  auth_servers: [ "localhost:3025" ]
+  log:
+      output: /var/lib/teleport/teleport.log
+      severity: DEBUG
+
+auth_service:
+  # enable the auth service:
+  enabled: "yes"
+  tokens:
+  # this static token is used for other nodes to join this Teleport cluster
+  - proxy,node:my-little-token
+
+  # by default, local authentication will be used with 2FA
+  authentication:
+      second_factor: otp
+
+# SSH is also enabled on this node:
+ssh_service:
+  enabled: "yes"
+
+proxy_service:
+    enabled: "no"
